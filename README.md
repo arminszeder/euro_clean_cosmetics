@@ -1,17 +1,23 @@
 # Euro Clean Cosmetics
 
-Landing page for Euro Clean Cosmetics — a single self-contained static HTML page.
+Adatvédelmi tájékoztató (GDPR privacy notice) for Euro Clean Cosmetics Kft., published as a
+single self-contained static HTML page. Linked from the company's Facebook and Instagram pages.
 
 ## Overview
 
-The entire site lives in [`index.html`](./index.html): markup, hand-written CSS,
-and vanilla JavaScript are all inlined, along with SVG icons and base64-embedded
-images. No build step, no framework, no dependencies. The only external resource
-is Google Fonts.
+Everything lives in [`index.html`](./index.html): markup and hand-written CSS, no build step,
+no framework, no dependencies. The only external resource is Google Fonts.
+
+## Placeholders
+
+Before the page goes live, replace the bracketed values in `index.html` (rendered with the
+`.fill` style so they stand out):
+
+- Székhely (registered seat), cégjegyzékszám, adószám, ügyvezető neve
+- Contact e-mail and phone number
+- The bookkeeper named as adatfeldolgozó in section 6
 
 ## Local preview
-
-Any static file server works. For example:
 
 ```bash
 python3 -m http.server 8055
@@ -21,6 +27,6 @@ Then open http://localhost:8055/
 
 ## Deployment
 
-Deployed as a static site on [Vercel](https://vercel.com). Because `index.html`
-sits at the repository root, Vercel serves it automatically with no configuration.
-Pushing to the `main` branch triggers an automatic deploy.
+Deployed as a static site on [Vercel](https://vercel.com). Because `index.html` sits at the
+repository root, Vercel serves it automatically with no configuration. Pushing to the `main`
+branch triggers an automatic deploy.
