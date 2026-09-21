@@ -10,3 +10,7 @@ Thumbs.db
 
 # Dependencies (in case tooling is ever added)
 node_modules/
+
+# Local secrets (the real keys live in Vercel env vars)
+.env
+.env.*
