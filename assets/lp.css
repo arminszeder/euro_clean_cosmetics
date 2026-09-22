@@ -146,7 +146,8 @@ h1 em { font-style: normal; color: var(--accent-soft); }
 
 .cta {
   display: flex; align-items: center; justify-content: center; gap: 10px;
-  width: 100%; margin-top: 22px;
+  /* Az auto oldalmargó tartja középen ott, ahol a gomb nem teljes szélességű. */
+  width: 100%; margin: 22px auto 0;
   font-family: inherit; font-size: 17px; font-weight: 700; letter-spacing: -.01em;
   color: #fff; text-decoration: none; cursor: pointer;
   border: 0; border-radius: 13px; padding: 17px 22px;
@@ -168,10 +169,13 @@ h1 em { font-style: normal; color: var(--accent-soft); }
 @media (prefers-reduced-motion: reduce) { .cta { animation: none; } html { scroll-behavior: auto; } }
 
 .under-cta {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  margin-top: 12px; font-size: 13.5px; color: var(--muted); text-align: center;
+  margin-top: 12px; font-size: 13.5px; color: var(--muted);
+  text-align: center; text-wrap: balance;
 }
-.under-cta svg { width: 15px; height: 15px; color: var(--free); flex: none; }
+.under-cta svg {
+  width: 15px; height: 15px; color: var(--free);
+  display: inline-block; vertical-align: -2px; margin-right: 6px;
+}
 
 /* ── ajánlat magyarázó doboz ──────────────────────────────────────────────── */
 
@@ -271,7 +275,7 @@ footer .legal { margin-top: 12px; font-size: 12px; opacity: .75; }
   padding: 11px var(--pad) calc(11px + env(safe-area-inset-bottom));
   display: flex; justify-content: center;
 }
-.stick .cta { max-width: 580px; margin-top: 0; padding: 15px 22px; font-size: 16px; }
+.stick .cta { max-width: 580px; margin: 0 auto; padding: 15px 22px; font-size: 16px; }
 
 /* ── űrlap ────────────────────────────────────────────────────────────────── */
 
@@ -369,7 +373,6 @@ form { margin-top: 20px; display: grid; gap: 15px; }
   .hero { padding-top: 46px; }
   .shot img { aspect-ratio: 16 / 9; }
   .cta { width: auto; min-width: 300px; }
-  .under-cta { justify-content: flex-start; }
   .band { grid-template-columns: repeat(3, 1fr); }
   .band div { justify-content: center; padding: 16px 10px; }
   .card { flex-basis: 300px; }
