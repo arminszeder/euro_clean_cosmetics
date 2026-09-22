@@ -44,12 +44,18 @@ ott, ahol meg is jelenik.
    |---|---|
    | `SUPABASE_URL` | `https://<projekt>.supabase.co` |
    | `SUPABASE_SERVICE_ROLE` | a **service_role** kulcs, soha nem az anon |
+   | `META_PIXEL_ID` | a pixel azonosítója. Opcionális |
+   | `META_CAPI_TOKEN` | Events Manager → Settings → **Conversions API** → Generate access token. Opcionális |
+   | `META_TEST_EVENT_CODE` | csak amíg tesztel, a Test Events fülről. Utána törölje |
+
+   A két Meta változó nélkül a lead mentése változatlanul működik, csak a Meta nem
+   kap eseményt. A válasz `measured` mezője megmondja, elment-e.
 
    A kulcs a Marketing OS `.env`-jében `SUPABASE_SERVICE_ROLE_KEY` néven van; a
    függvény mindkét nevet elfogadja, tehát másolható úgy, ahogy van.
-3. **Nincs Meta Pixel az oldalakon.** Amíg nincs, a Meta nem lát konverziót, csak
-   linkkattintást. A `lp.js` már hívja az `fbq('track','Lead')`-et, ha a pixel
-   jelen van, tehát a pixel kódot elég beilleszteni a két HTML `<head>`-jébe.
+3. **Nincs böngésző pixel, és ez döntés.** A mérés szerver oldalról megy, a Meta
+   Conversions API-n, lásd lentebb. Így nincs süti, nincs hozzájárulás kérő sáv, és
+   nem esik ki az a látogató, aki elutasítaná.
 
 Deploy: push a `main` ágra, a Vercel magától épít. Framework preset **Other**,
 build command üres, output directory a repó gyökere. A `vercel.json` mindent
@@ -86,6 +92,30 @@ kiír egy hibát és felkínálja a telefonszámot.
 node api/lead.test.cjs      # a végpont tesztje, nem hív hálózatot
 ```
 
+## Hirdetésmérés: Conversions API, böngésző pixel nélkül
+
+A `api/lead.js` a sikeres mentés után elküld egy `Lead` eseményt a Metának,
+szerver oldalról. Ennek három oka van:
+
+- **A forgalom java a Meta appon belüli böngészőjéből jön**, ahol a böngésző
+  pixel a legmegbízhatatlanabb. A szerver oldali esemény nem tud elveszni.
+- **Nincs süti, tehát nincs sütibanner.** Egy hozzájárulás kérő sáv a
+  látogatók egy részét elveszíti, és pont a konverziós arányt rontja.
+- **Csak arról megy adat, aki ténylegesen elküldte az űrlapot,** és aki erről az
+  űrlap alatt olvasott is. Aki az oldalt csak megnézi, arról semmi.
+
+Ami kimegy: a **telefonszám és a település SHA-256 hashe**, az ország, a
+látogató IP címe és böngészőazonosítója, valamint az `fbc` kattintás azonosító,
+amit a `lp.js` az URL `fbclid` paraméteréből épít. **A név nem megy ki.**
+
+A `lp.js` minden beküldéshez generál egy `event_id`-t. Ma nincs mivel párosítani,
+de ha egyszer sütibanner mellett visszakerül a böngésző pixel, a Meta ezen a
+mezőn vonja össze a két eseményt, és nem számol duplán.
+
+Tesztelés: állítsa be a `META_TEST_EVENT_CODE`-ot a Test Events fülről, küldjön
+be egy űrlapot, és az esemény ott jelenik meg. **Utána törölje a változót**, és a
+teszt sort is a CRM-ből.
+
 ### Miért nem a Marketing OS `/api/leads` végpontja
 
 Az lenne a kijelölt út, de a Marketing OS asztali appként fut a 127.0.0.1-en,
@@ -101,11 +131,14 @@ tábla saját dedupe indexe e-mailre megy, tehát azon nem fog; a telefonszámos
 dedupe ezért a függvényben van, és csak egy órás ablakra.
 
 Az űrlap alatt egy mondat áll arról, mihez járul hozzá a beküldő, és egy link az
-`/adatvedelem` oldalra. **Nincs külön kipipálandó négyzet.** Árajánlat kérésénél
-az adatkezelés jogalapja a szerződéskötést megelőző lépés, nem a hozzájárulás,
-ezért a négyzet nem kötelező, viszont a kiírás igen. Ha később hírlevélre is
-gyűjtene címet, az **külön, alapértelmezetten üres négyzetet** kíván, mert az már
-hozzájárulás.
+`/adatvedelem` oldalra. **Nincs külön kipipálandó négyzet.** Magára az
+ajánlatadásra a jogalap a szerződéskötést megelőző lépés, nem a hozzájárulás. A
+Meta felé menő, hash-elt mérési adatra viszont a hozzájárulás a jogalap, és azt
+a beküldés adja meg, ezért áll ott ez a mondat szó szerint. Ha ezt a mondatot
+átírja, a tájékoztató 5. szakaszát is írja át vele.
+
+Ha később hírlevélre is gyűjtene címet, az **külön, alapértelmezetten üres
+négyzetet** kíván: az már külön célú hozzájárulás.
 
 ## A szöveg szerkesztése
 

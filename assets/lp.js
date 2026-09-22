@@ -94,6 +94,35 @@
 
   /* ── beküldés ────────────────────────────────────────────────────────── */
 
+  /**
+   * A Meta kattintás azonosítója. Nincs böngésző pixel az oldalon, tehát nincs
+   * _fbp süti sem; a hirdetésre kattintás bizonyítéka az URL fbclid paramétere,
+   * amit a Meta `fbc` formátumában küldünk tovább a szervernek. A sessionStorage
+   * azért kell, hogy egy oldalfrissítés után se vesszen el.
+   */
+  function clickId() {
+    var fresh = new URLSearchParams(location.search).get('fbclid');
+    try {
+      if (fresh) {
+        var built = 'fb.1.' + Date.now() + '.' + fresh;
+        sessionStorage.setItem('ec_fbc', built);
+        return built;
+      }
+      return sessionStorage.getItem('ec_fbc') || '';
+    } catch (e) {
+      // Privát ablak: a sessionStorage dobhat. Ilyenkor csak a friss érték van.
+      return fresh ? 'fb.1.' + Date.now() + '.' + fresh : '';
+    }
+  }
+
+  /** Egy beküldés egy esemény. A szerver ezzel az azonosítóval küldi a Metának. */
+  function eventId() {
+    try {
+      if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    } catch (e) { /* lent a tartalék */ }
+    return 'ec-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+  }
+
   // Amit a hirdetésről hozunk magunkkal. A CRM üzenet mezőjébe megy.
   function trackingBits() {
     var q = new URLSearchParams(location.search);
@@ -127,7 +156,10 @@
       city: (data.get('city') || '').toString(),
       website: (data.get('website') || '').toString(),  // mézesbödön
       page: page,
-      tracking: trackingBits()
+      tracking: trackingBits(),
+      fbc: clickId(),
+      event_id: eventId(),
+      event_source_url: location.href.slice(0, 500)
     };
 
     if (!payload.service) return fail('Válassza ki, mire kér ajánlatot.');
@@ -153,7 +185,10 @@
         form.hidden = true;
         doneBox.hidden = false;
         doneBox.scrollIntoView({ block: 'nearest' });
-        if (window.fbq) window.fbq('track', 'Lead');
+        // Ma nincs böngésző pixel az oldalon, tehát ez nem fut le. Szándékosan
+        // marad: ha egyszer sütibanner mellett visszakerül a pixel, a szerver
+        // ugyanezzel az event_id-vel küld, és a Meta összevonja a kettőt.
+        if (window.fbq) window.fbq('track', 'Lead', {}, { eventID: payload.event_id });
       })
       .catch(function () {
         // A mezőket szándékosan nem ürítjük: egy lead se vesszen el némán.

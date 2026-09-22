@@ -115,23 +115,6 @@
   footer .wrap { padding: 30px 24px 44px; }
   footer p { color: var(--muted); font-size: 14px; margin-bottom: 6px; }
 </style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '28552921374340337');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=28552921374340337&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -169,7 +152,7 @@ src="https://www.facebook.com/tr?id=28552921374340337&ev=PageView&noscript=1"
         <li><a href="#alapelvek">Alapelvek és jogszabályi háttér</a></li>
         <li><a href="#adatkezelesek">Milyen adatokat kezelünk és miért</a></li>
         <li><a href="#kozossegi">Facebook és Instagram oldalaink</a></li>
-        <li><a href="#suti">Sütik és nyomkövetés</a></li>
+        <li><a href="#suti">Sütik és a hirdetések mérése</a></li>
         <li><a href="#tovabbitas">Adatfeldolgozók és adattovábbítás</a></li>
         <li><a href="#biztonsag">Adatbiztonság</a></li>
         <li><a href="#jogok">Az Ön jogai</a></li>
@@ -229,6 +212,12 @@ src="https://www.facebook.com/tr?id=28552921374340337&ev=PageView&noscript=1"
               <td>Kapcsolatfelvétel, árajánlat, időpontfoglalás telefonon, e-mailben vagy közösségi médiában</td>
               <td>Név, telefonszám, e-mail cím, üzenet tartalma, a gépjármű Ön által megadott adatai (típus, állapot)</td>
               <td>GDPR 6. cikk (1) b) szerződéskötést megelőző lépések, illetve 6. cikk (1) f) jogos érdek az érdeklődések megválaszolásához</td>
+              <td>A megkeresés lezárását követő 1 év, szerződéskötés esetén a szerződéses adatkezelés szerint</td>
+            </tr>
+            <tr>
+              <td>Ajánlatkérés a weboldal űrlapján</td>
+              <td>Név, telefonszám, település, a kiválasztott szolgáltatás, valamint az a hirdetés, amelyről Ön az oldalra érkezett</td>
+              <td>GDPR 6. cikk (1) b) szerződéskötést megelőző lépések. A hirdetésmérés vonatkozásában a 6. cikk (1) a) hozzájárulás</td>
               <td>A megkeresés lezárását követő 1 év, szerződéskötés esetén a szerződéses adatkezelés szerint</td>
             </tr>
             <tr>
@@ -304,38 +293,43 @@ src="https://www.facebook.com/tr?id=28552921374340337&ev=PageView&noscript=1"
     </section>
 
     <section id="suti">
-      <h2><span class="num">5.</span>Sütik és nyomkövetés</h2>
+      <h2><span class="num">5.</span>Sütik és a hirdetések mérése</h2>
       <p>
-        A weboldal működéséhez feltétlenül szükséges sütiken felül a hirdetéseink méréséhez a
-        Meta Platforms Ireland Limited <strong>Meta pixel</strong> nevű szolgáltatását használjuk.
-        A pixel sütit helyez el a böngészőjében, és a Meta felé továbbítja az Ön IP címét,
-        böngészőazonosítóját, a megnyitott oldal címét, valamint azt, hogy elküldte-e az
-        ajánlatkérő űrlapot. Ebből tudjuk megállapítani, melyik hirdetésünk hozott valódi
-        érdeklődőt. Az űrlapon megadott nevét és telefonszámát a pixel nem továbbítja.
+        <strong>Nem helyezünk el marketing- vagy nyomkövető sütiket, és nem futtatunk
+        analitikai szolgáltatást.</strong> A weboldalunkon nincs Meta pixel és nincs
+        semmilyen más, a böngészőjét figyelő kód. Ezért nem is kérünk süti hozzájárulást:
+        nincs mihez kérni.
+      </p>
+      <h3>Hogyan mérjük mégis a hirdetéseinket</h3>
+      <p>
+        Ha Ön kitölti és elküldi az ajánlatkérő űrlapot, a saját szerverünk jelzi a Meta
+        Platforms Ireland Limited felé, hogy egy hirdetésünk érdeklődőt hozott. Ebben a
+        jelzésben az Ön <strong>telefonszáma és települése kizárólag visszafejthetetlen,
+        titkosított formában</strong> szerepel, a nevét pedig egyáltalán nem továbbítjuk. A
+        Meta ezeket a titkosított értékeket a saját nyilvántartásával veti össze, hogy meg
+        tudjuk állapítani, melyik hirdetésünk működik.
       </p>
       <p>
-        <strong>A pixel kizárólag az Ön előzetes hozzájárulásával indul el.</strong> Az oldal első
-        megnyitásakor megjelenő sávon tud hozzájárulni vagy elutasítani. Elutasítás esetén a pixel
-        nem töltődik be, és a weboldal minden funkciója változatlanul használható marad. Döntését
-        bármikor megváltoztathatja az oldal alján lévő <strong>Süti beállítások</strong>
-        hivatkozással. Az adatkezelés jogalapja az Ön hozzájárulása, a GDPR 6. cikk (1) bekezdés
-        a) pontja alapján, amelyet bármikor, a jövőre nézve visszavonhat.
+        A jelzés <strong>csak akkor indul el, ha Ön ténylegesen elküldte az űrlapot</strong>.
+        Aki az oldalt csak megnézi, arról semmilyen adat nem kerül a Metához. Az adatkezelés
+        jogalapja az Ön hozzájárulása, a GDPR 6. cikk (1) bekezdés a) pontja alapján,
+        amelyet az űrlap elküldésével ad meg, és amelyet bármikor, a jövőre nézve
+        visszavonhat a fenti elérhetőségeinken.
       </p>
       <p>
-        A pixellel gyűjtött adatok vonatkozásában a Metával közös adatkezelők vagyunk. A Meta
-        ezeket az adatokat a saját szabályzata szerint is felhasználja, erre nincs ráhatásunk;
-        a részleteket a
+        A Meta ezeket az adatokat a saját szabályzata szerint is felhasználja, erre nincs
+        ráhatásunk; a részleteket a
         <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta adatvédelmi szabályzatában</a>
         olvashatja el. Az adatok Egyesült Államokba történő továbbítása az Európai Bizottság
-        megfelelőségi határozatán, az EU és az Egyesült Államok közötti adatvédelmi kereten
-        alapul.
+        megfelelőségi határozatán, az Európai Unió és az Egyesült Államok közötti adatvédelmi
+        kereten alapul.
       </p>
       <p>
         Az adatvédelmi tájékoztató betűtípusai a Google Fonts szolgáltatásból töltődnek be,
         amelynek során a Google felé továbbításra kerül az Ön IP címe. Erről a
         <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google adatvédelmi szabályzatában</a>
-        tájékozódhat. A hirdetési oldalaink betűtípusait saját tárhelyünkről szolgáljuk ki, ott
-        ilyen továbbítás nem történik.
+        tájékozódhat. A hirdetési oldalaink betűtípusait saját tárhelyünkről szolgáljuk ki,
+        ott ilyen továbbítás nem történik.
       </p>
       <p>
         A tárhelyszolgáltató a működéshez szükséges technikai naplóállományokat, például IP címet és
@@ -354,13 +348,18 @@ src="https://www.facebook.com/tr?id=28552921374340337&ev=PageView&noscript=1"
           <tbody>
             <tr>
               <td>Meta Platforms Ireland Ltd. (Írország)</td>
-              <td>Facebook és Instagram oldal, üzenetküldés</td>
-              <td>Profilnév, üzenetek, hozzászólások, összesített statisztikák</td>
+              <td>Facebook és Instagram oldal, üzenetküldés, a hirdetések eredményének mérése</td>
+              <td>Profilnév, üzenetek, hozzászólások, összesített statisztikák, az ajánlatkérő telefonszámának és településének titkosított értéke</td>
             </tr>
             <tr>
               <td>Vercel Inc. (Amerikai Egyesült Államok)</td>
               <td>Weboldal tárhelyszolgáltatás</td>
               <td>Technikai naplóadatok, IP cím</td>
+            </tr>
+            <tr>
+              <td>Supabase Inc. (Amerikai Egyesült Államok)</td>
+              <td>Az ajánlatkérések adatbázisa</td>
+              <td>Név, telefonszám, település, a kért szolgáltatás</td>
             </tr>
           </tbody>
         </table>
