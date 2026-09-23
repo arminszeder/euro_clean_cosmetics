@@ -22,6 +22,8 @@ tisztitas/index.html    A oldal
 auto/index.html         B oldal
 assets/lp.css           a két landing oldal közös stíluslapja
 assets/lp.js            közös viselkedés: űrlap, karusszel, beküldés
+assets/consent.css      a süti sáv, saját értékekkel, oldalfüggetlenül
+assets/consent.js       a süti sáv és a Meta pixel betöltése
 assets/fonts/           Poppins 400/600/800, latin és latin-ext
 img/                    a landing oldalak fotói
 api/lead.js             a lead végpont
@@ -53,9 +55,16 @@ ott, ahol meg is jelenik.
 
    A kulcs a Marketing OS `.env`-jében `SUPABASE_SERVICE_ROLE_KEY` néven van; a
    függvény mindkét nevet elfogadja, tehát másolható úgy, ahogy van.
-3. **Nincs böngésző pixel, és ez döntés.** A mérés szerver oldalról megy, a Meta
-   Conversions API-n, lásd lentebb. Így nincs süti, nincs hozzájárulás kérő sáv, és
-   nem esik ki az a látogató, aki elutasítaná.
+3. **A Meta pixelt a süti sáv tölti be, nem a HTML.** A `assets/consent.js` az
+   egyetlen hely, ahol a pixel elindul, és csak elfogadás után. A HTML-ekben
+   nincs pixel kód: ha ott lenne, a kérés a döntés előtt elmenne, és a sáv
+   díszlet volna. A döntés a `localStorage` `ec_consent` kulcsában él
+   (`granted` vagy `denied`), és a láblécek `data-cookie-settings` hivatkozása
+   nyitja újra.
+
+   **Az elutasítás nem viszi el a lead mérését.** A `Lead` eseményt a szerver is
+   elküldi az `api/lead.js`-ből, a Conversions API-n, süti nélkül. Aki elutasít,
+   arról a `PageView` és a remarketing esik ki, a konverziós jelzés nem.
 
 Deploy: push a `main` ágra, a Vercel magától épít. Framework preset **Other**,
 build command üres, output directory a repó gyökere. A `vercel.json` mindent

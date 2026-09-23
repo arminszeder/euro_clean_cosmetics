@@ -115,23 +115,8 @@
   footer .wrap { padding: 30px 24px 44px; }
   footer p { color: var(--muted); font-size: 14px; margin-bottom: 6px; }
 </style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '28552921374340337');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=28552921374340337&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+<link rel="stylesheet" href="/assets/consent.css">
+<script src="/assets/consent.js" defer></script>
 </head>
 <body>
 
@@ -312,29 +297,38 @@ src="https://www.facebook.com/tr?id=28552921374340337&ev=PageView&noscript=1"
     <section id="suti">
       <h2><span class="num">5.</span>Sütik és a hirdetések mérése</h2>
       <p>
-        <strong>Nem helyezünk el marketing- vagy nyomkövető sütiket, és nem futtatunk
-        analitikai szolgáltatást.</strong> A weboldalunkon nincs Meta pixel és nincs
-        semmilyen más, a böngészőjét figyelő kód. Ezért nem is kérünk süti hozzájárulást:
-        nincs mihez kérni.
+        A weboldal működéséhez feltétlenül szükséges sütiken felül egyetlen dolog
+        használ sütit: a hirdetéseink méréséhez a Meta Platforms Ireland Limited
+        <strong>Meta pixel</strong> nevű szolgáltatása. A pixel a Meta felé továbbítja az
+        Ön IP címét, böngészőazonosítóját és a megnyitott oldal címét.
       </p>
-      <h3>Hogyan mérjük mégis a hirdetéseinket</h3>
+      <h3>Ön dönti el, elindul-e</h3>
       <p>
-        Ha Ön kitölti és elküldi az ajánlatkérő űrlapot, a saját szerverünk jelzi a Meta
-        Platforms Ireland Limited felé, hogy egy hirdetésünk érdeklődőt hozott. Ebben a
-        jelzésben az Ön <strong>telefonszáma és települése kizárólag visszafejthetetlen,
-        titkosított formában</strong> szerepel, a nevét pedig egyáltalán nem továbbítjuk. A
-        Meta ezeket a titkosított értékeket a saját nyilvántartásával veti össze, hogy meg
-        tudjuk állapítani, melyik hirdetésünk működik.
+        <strong>A pixel csak akkor töltődik be, ha Ön a weboldal alján megjelenő sávon
+        elfogadja.</strong> Amíg nem dönt, nem indul el. Ha elutasítja, nem töltődik be, és
+        a weboldal minden funkciója változatlanul használható marad. Az elfogadás és az
+        elutasítás ugyanolyan egyszerű, egyik sincs a másik elé helyezve.
       </p>
       <p>
-        A jelzés <strong>csak akkor indul el, ha Ön ténylegesen elküldte az űrlapot</strong>.
-        Aki az oldalt csak megnézi, arról semmilyen adat nem kerül a Metához. Az adatkezelés
-        jogalapja az Ön hozzájárulása, a GDPR 6. cikk (1) bekezdés a) pontja alapján,
-        amelyet az űrlap elküldésével ad meg, és amelyet bármikor, a jövőre nézve
-        visszavonhat a fenti elérhetőségeinken.
+        Döntését bármikor megváltoztathatja az oldal alján lévő <strong>Süti
+        beállítások</strong> hivatkozással. Az adatkezelés jogalapja az Ön hozzájárulása, a
+        GDPR 6. cikk (1) bekezdés a) pontja alapján, amelyet bármikor, a jövőre nézve
+        visszavonhat.
+      </p>
+      <h3>Az ajánlatkérés mérése, süti nélkül</h3>
+      <p>
+        Ha Ön elküldi az ajánlatkérő űrlapot, a saját szerverünk közvetlenül jelzi a Meta
+        felé, hogy egy hirdetésünk érdeklődőt hozott. <strong>Ehhez nincs szükség sütire,
+        ezért ez akkor is megtörténik, ha a fenti sávon elutasította a pixelt.</strong>
+        Ebben a jelzésben az Ön telefonszáma és települése kizárólag visszafejthetetlen,
+        titkosított formában szerepel, a nevét pedig egyáltalán nem továbbítjuk. A jelzés
+        csak akkor indul el, ha Ön ténylegesen elküldte az űrlapot; aki az oldalt csak
+        megnézi, arról semmilyen adat nem kerül a Metához. Ennek az adatkezelésnek a
+        jogalapja szintén az Ön hozzájárulása, amelyet az űrlap elküldésével ad meg, és
+        amelyről az űrlap alatt olvashat.
       </p>
       <p>
-        A Meta ezeket az adatokat a saját szabályzata szerint is felhasználja, erre nincs
+        A Meta a fenti adatokat a saját szabályzata szerint is felhasználja, erre nincs
         ráhatásunk; a részleteket a
         <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta adatvédelmi szabályzatában</a>
         olvashatja el. Az adatok Egyesült Államokba történő továbbítása az Európai Bizottság
@@ -464,7 +458,8 @@ src="https://www.facebook.com/tr?id=28552921374340337&ev=PageView&noscript=1"
 <footer>
   <div class="wrap">
     <p>Euro Clean Cosmetics Kft. · Mosonmagyaróvár</p>
-    <p>Utolsó frissítés: 2026. szeptember 9.</p>
+    <p>Utolsó frissítés: 2026. szeptember 23.</p>
+    <p><a href="#" data-cookie-settings>Süti beállítások</a></p>
   </div>
 </footer>
 
